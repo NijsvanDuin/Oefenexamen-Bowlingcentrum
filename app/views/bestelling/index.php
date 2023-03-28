@@ -2,7 +2,7 @@
 echo $data["title"];
 ?><br>
 
-<button><a href="<?= URLROOT; ?>/bestellen/create">Nieuwe bestelling</a></button>
+<button type="button" class="btn btn-info"><a class=" geenLijn" href="<?= URLROOT; ?>/bestellen/create">Nieuwe bestelling</a></button>
 <br><br>
 <table>
     <thead>
@@ -18,8 +18,8 @@ echo $data["title"];
                 <td><?= $bestelling->name ?></td>
                 <td><?= $bestelling->code ?></td>
                 <td><?= $bestelling->time_reservation ?></td>
-                <td><a href='/bestellen/update/<?= $bestelling->reservation_id ?>/<?= $bestelling->option_id ?>'>update</a></td>
-                <td><a href='/bestellen/delete/<?= $bestelling->reservation_id ?>/<?= $bestelling->option_id ?>'>delete</a></td>
+                <td><a class="update" href='/bestellen/update/<?= $bestelling->reservation_id ?>'>update</a></td>
+                <td><a class="delete" href='/bestellen/delete/<?= $bestelling->reservation_id ?>/<?= $bestelling->option_id ?>'>delete</a></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

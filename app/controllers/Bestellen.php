@@ -67,4 +67,33 @@ class Bestellen extends Controller
             header("Refresh:3; url=" . URLROOT . "/bestellen/index");
         }
     }
+    public function update($optId)
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // var_dump($_POST);
+            try {
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+                $this->bestelModel->updateBestelling($optId, $_POST);
+                echo "<h2>De bestelling is sucsessful geupdate!</h2>";
+                header("Refresh:3; url=" . URLROOT . "/bestellen/index");
+            } catch (PDOException $e) {
+                echo "Het is niet gelukt om de bestelling te maken. Probeer het later opnieuw. <br>" . $e;
+                var_dump($_POST);
+                exit;
+                header("Refresh:3; url=" . URLROOT . "/bestellen/index");
+            }
+        } else {
+            $options = $this->bestelModel->getOptions();
+            $current = $this->bestelModel->getOptionsById($optId);
+            $data = [
+                'title' => "<h1>Update Bestelling</h1>",
+                'options' => $options,
+                'current' => $current,
+                'id' => $optId
+            ];
+
+            $this->view("bestelling/update", $data);
+        }
+    }
 }

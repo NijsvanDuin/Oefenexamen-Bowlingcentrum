@@ -24,3 +24,15 @@ table, th, td {
 .sucmelding {
     color: green;
 }
+a.geenLijn{
+    color: black;
+    text-decoration: none;
+}
+a.delete{
+    color: red;
+    text-decoration: none;
+}
+a.update{
+    color: blue;
+    text-decoration: none;
+}

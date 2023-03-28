@@ -45,7 +45,13 @@ class Bestel
         $result = $this->db->resultSet();
         return $result;
     }
-
+    public function getOptionsById($id)
+    {
+        $this->db->query("SELECT * FROM `reservation_option` where reservation_id = :id");
+        $this->db->bind(':id', $id, PDO::PARAM_INT);
+        $result = $this->db->single();
+        return $result;
+    }
 
 
     public function createBestellingen($post)
@@ -65,6 +71,20 @@ class Bestel
         $this->db->query("DELETE FROM reservation_option WHERE `reservation_option`.`reservation_id` = :resId AND `reservation_option`.`option_id` = :optId");
         $this->db->bind(':resId', $resId, PDO::PARAM_INT);
         $this->db->bind(':optId', $optId, PDO::PARAM_INT);
+        return $this->db->execute();
+    }
+
+    public function updateBestelling($optId, $data)
+    {
+        $this->db->query("
+        UPDATE `reservation_option`
+        SET `option_id` = :newOptId
+        WHERE `reservation_id` = :oldOptId
+        ");
+        $this->db->bind(':newOptId', $data['newOptionId'], PDO::PARAM_INT);
+        $this->db->bind(':oldOptId', $optId, PDO::PARAM_INT);
+
+
         return $this->db->execute();
     }
 }
