@@ -4,6 +4,7 @@ require APPROOT  . '/views/includes/head.php';
 <h3><u><?= $data['title']; ?></u></h3><br>
 
 <table border=1>
+    <a href="<?= URLROOT; ?>/score/addScores">toevoegen</a>
     <thead>
         <th>Voornaam</th>
         <th>Achternaam</th>
@@ -12,6 +13,8 @@ require APPROOT  . '/views/includes/head.php';
     <tbody>
         <?= $data['rows']; ?>
     </tbody>
+    <a href="Score/deleteScore">Delete</a>
 </table>
 <a href="<?= URLROOT; ?>/homepages/index">home</a>
+
 <?php require APPROOT  . '/views/includes/footer.php'; ?>

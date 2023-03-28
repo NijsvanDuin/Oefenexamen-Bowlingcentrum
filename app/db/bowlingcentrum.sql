@@ -154,3 +154,4 @@ CREATE TABLE `person_score` (
   CONSTRAINT `person_score_ibfk_1` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`),
   CONSTRAINT `person_score_ibfk_2` FOREIGN KEY (`score_id`) REFERENCES `score` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
