@@ -291,3 +291,22 @@ INSERT INTO `person_score` (`person_id`,`score_id`,`reservation_id`) VALUES
   (8,3,8),
   (9,4,9),
   (10,5,10);
+
+-- stored procedures
+
+DELIMITER //
+CREATE PROCEDURE `add_scroe`(
+  IN `person_id` INT,
+  IN `value` INT,
+  IN `reservation_id` INT
+)
+BEGIN
+  DECLARE @score_id INT;
+  INSERT INTO score (value) VALUES (value);
+  SET @score_id = LAST_INSERT_ID();
+
+  INSERT INTO person_score (person_id, score_id, reservation_id) VALUES (person_id, @score_id, reservation_id);
+  
+  SELECT * FROM person_score WHERE person_id = person_id;
+END //
+DELIMITER ;

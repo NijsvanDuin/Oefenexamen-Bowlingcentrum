@@ -1,8 +1,8 @@
 <?php require APPROOT  . '/views/includes/head.php'; ?>
-<section>
+<section class="p-2 w-full">
   <h3>Reservation</h3>
   <a href="<?= URLROOT; ?>/reservation/create">Create</a>
-  <table>
+  <table class="w-full">
     <thead>
       <tr>
         <th>ID</th>

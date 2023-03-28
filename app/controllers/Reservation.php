@@ -24,8 +24,11 @@ class Reservation extends Controller
   {
     switch ($_SERVER['REQUEST_METHOD']) {
       case 'GET':
+        $options = $this->reservationModel->getOptions();
+
         $data = [
-          'title' => 'Create reservation'
+          'title' => 'Create reservation',
+          'options' => $options,
         ];
 
         $this->view('reservation/create', $data);
@@ -111,5 +114,10 @@ class Reservation extends Controller
   {
     $this->reservationModel->deleteReservation($id);
     header('Location: ' . URLROOT . '/reservation');
+  }
+
+  public function getReservation()
+  {
+    return 'Reservation';
   }
 }

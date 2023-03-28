@@ -4,6 +4,30 @@
   <h3>Create reservation</h3>
   <form action="<?= URLROOT; ?>/reservation/create" method="post">
     <label>
+      <span>Person</span>
+      <select name="person_id">
+        <?php foreach ($data['options']['persons'] as $person) : ?>
+          <option value="<?= $person->id; ?>"><?= $person->first_name; ?> <?= $person->last_name; ?></option>
+        <?php endforeach; ?>
+      </select>
+    </label>
+    <label>
+      <span>Track</span>
+      <select name="track_id">
+        <?php foreach ($data['options']['tracks'] as $track) : ?>
+          <option value="<?= $track->id; ?>"><?= $track->code; ?></option>
+        <?php endforeach; ?>
+      </select>
+    </label>
+    <label>
+      <span>Opening</span>
+      <select name="opening_id">
+        <?php foreach ($data['options']['openings'] as $opening) : ?>
+          <option value="<?= $opening->id; ?>"><?= $opening->day_name; ?> <?= $opening->start; ?> - <?= $opening->end; ?></option>
+        <?php endforeach; ?>
+      </select>
+    </label>
+    <label>
       <span>Adults</span>
       <input type="number" name="adults">
     </label>

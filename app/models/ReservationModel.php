@@ -149,4 +149,48 @@ class ReservationModel
     $this->db->bind(":id", $id, PDO::PARAM_INT);
     return $this->db->execute();
   }
+
+  public function getOptions()
+  {
+    $data = [
+      'tracks' => [],
+      'openings' => [],
+      'persons' => []
+    ];
+
+    $this->db->query("
+    SELECT
+      `id`,
+      `code`
+    FROM
+      `track`
+    ");
+
+    $data['tracks'] = $this->db->resultSet();
+
+    $this->db->query("
+    SELECT
+      `id`,
+      `day_name`,
+      `start`,
+      `end`
+    FROM
+      `opening`
+    ");
+
+    $data['openings'] = $this->db->resultSet();
+
+    $this->db->query("
+    SELECT
+      `id`,
+      `first_name`,
+      `last_name`
+    FROM
+      `person`
+    ");
+
+    $data['persons'] = $this->db->resultSet();
+
+    return $data;
+  }
 }

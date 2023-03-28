@@ -1,5 +1,5 @@
 <?php
-define('DB_HOST', '172.23.0.2');
+define('DB_HOST', '172.23.0.3');
 define('DB_USER', 'root');
 define('DB_PASS', 'example');
 define('DB_NAME', 'bowlingcentrum');

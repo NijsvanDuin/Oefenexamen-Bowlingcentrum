@@ -1,0 +1,26 @@
+{
+	"name": "m-stam/oefenexamen-bowlingcentrum",
+	"autoload": {
+		"classmap": [
+			"app/controllers/",
+			"app/models/",
+			"app/views/",
+			"app/libraries/"
+		],
+		"files": [
+			"app/config/config.php"
+		],
+		"psr-4": {
+			"MStam\\OefenexamenBowlingcentrum\\": "src/"
+		}
+	},
+	"authors": [
+		{
+			"name": "Manasseh Stam",
+			"email": "manasseh2424@gmail.com"
+		}
+	],
+	"require-dev": {
+		"phpunit/phpunit": "^10.0"
+	}
+}
