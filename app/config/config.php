@@ -7,6 +7,6 @@ define('DB_NAME', 'bowlingcentrum');
 define('APPROOT', dirname(dirname(__FILE__)));
 
 // Zet hier je virtualhostnaam. Let op dat er http:// voor staat anders werkt het niet
-define('URLROOT', 'http://proefexamen.local/');
+define('URLROOT', 'http://proefexamen.local');
 
 define('SITENAME', 'MVC Framework Starter Template');
