@@ -67,10 +67,10 @@ class ReservationModel
     UPDATE 
       `reservation`
     SET    
-      `adults` = :adults,
-      `children` = :children,
-      `date_reservation` = :date_reservation,
-      `time_reservation` = :time_reservation,
+      `adults` = :adults ,
+      `children` = :children ,
+      `date_reservation` = :date_reservation ,
+      `time_reservation` = :time_reservation ,
       `is_active` = :is_active
     where
       `id` = :id
@@ -79,7 +79,7 @@ class ReservationModel
     $this->db->query($query);
 
     $this->db->bind(":adults", $reservation['adults'], PDO::PARAM_INT);
-    $this->db->bind(":children", $reservation['chil dren'], PDO::PARAM_INT);
+    $this->db->bind(":children", $reservation['children'], PDO::PARAM_INT);
     $this->db->bind(":is_active", $reservation['is_active'], PDO::PARAM_INT);
     $this->db->bind(":date_reservation", $reservation['date_reservation'], PDO::PARAM_STR);
     $this->db->bind(":time_reservation", $reservation['time_reservation'], PDO::PARAM_STR);
@@ -98,16 +98,16 @@ class ReservationModel
       `date_reservation`,
       `time_reservation`,
       `adults`,
-      `children`,
+      `children`
     )
     VALUES(
-      :person_id,
-      :track_id,
-      :opening_id,
-      :date_reservation,
-      :time_reservation,
-      :adults,
-      :children,
+      :person_id ,
+      :track_id ,
+      :opening_id ,
+      :date_reservation ,
+      :time_reservation ,
+      :adults ,
+      :children
     )";
 
     $this->db->query($query);
