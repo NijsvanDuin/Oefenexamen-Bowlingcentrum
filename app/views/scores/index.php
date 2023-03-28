@@ -13,7 +13,6 @@ require APPROOT  . '/views/includes/head.php';
     <tbody>
         <?= $data['rows']; ?>
     </tbody>
-    <a href="Score/deleteScore">Delete</a>
 </table>
 <a href="<?= URLROOT; ?>/homepages/index">home</a>
 

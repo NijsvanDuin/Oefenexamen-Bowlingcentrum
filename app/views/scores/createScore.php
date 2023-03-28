@@ -11,7 +11,7 @@
         </select>
     </label>
     <label>
-        <input type="text" id="InputScore" name="score">
+        <input type="text" id="InputScore" value="<?= $data['value'] ?>">
     </label>
     <button type="submit">Verstuur</button>
 </form>
