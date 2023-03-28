@@ -1,6 +1,7 @@
 <?php require APPROOT . '/views/includes/head.php'; ?>
 <h3><?= $data['title'] ?></h3>
 
+<!-- shows names in dropdown and lets you add value -->
 <form action="<?= URLROOT ?>/score/addScores" method="post">
     <label>
         <span>Person</span>

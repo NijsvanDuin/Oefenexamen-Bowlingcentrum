@@ -8,6 +8,7 @@ class Score extends Controller
         $this->scoreModel = $this->model('ScoreModel');
     }
 
+    //redirects to index in view loads the values of index
     public function index()
     {
         $scores = $this->scoreModel->getScore();
@@ -30,6 +31,7 @@ class Score extends Controller
         $this->view('/scores/index', $data);
     }
 
+    //gives the data for create
     public function addScores($Id = null)
     {
         $options = $this->scoreModel->getPerson();
@@ -42,6 +44,7 @@ class Score extends Controller
         $this->view('scores/createScore', $data);
     }
 
+    //Does delete en gives message
     public function deleteScore($id)
     {
         $this->scoreModel->deleteScores($id);
