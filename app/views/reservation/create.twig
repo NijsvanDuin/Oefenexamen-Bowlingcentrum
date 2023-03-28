@@ -1,0 +1,65 @@
+{% extends 'layouts/base.twig' %} {% block content %}
+<main>
+	<section>
+		<h1>Create reservation page</h1>
+		<p>Here you can make a reservation</p>
+	</section>
+	<section>
+		<h3>Create</h3>
+		<form action="{{ globals.urlRoot }}/reservation/create" method="post">
+			<label>
+				<span>Person:</span>
+				<select name="person_id">
+					<option>Select a person</option>
+					{% for person in persons %}
+					<option value="{{ person.id }}">
+						{{ person.first_name }} {{ person.last_name }}
+					</option>
+					{% endfor %}
+				</select>
+			</label>
+			<label>
+				<span>Track:</span>
+				<select name="track_id">
+					<option>Select a track</option>
+					{% for track in tracks %}
+					<option value="{{ track.id }}">
+						{{ track.code }}
+					</option>
+					{% endfor %}
+				</select>
+			</label>
+			<label>
+				<span>Opening:</span>
+				<select name="opening_id">
+					<option>Select an opening</option>
+					{% for opening in openings %}
+					<option value="{{ opening.id }}">
+						{{ opening.start }} tot {{ opening.end }}
+					</option>
+					{% endfor %}
+				</select>
+			</label>
+			<label>
+				<span>Date:</span>
+				<input type="date" name="date_reservation" />
+			</label>
+			<label>
+				<span>Time:</span>
+				<input type="time" name="time_reservation" />
+			</label>
+			<label>
+				<span>Adults:</span>
+				<input type="number" name="adults" />
+			</label>
+			<label>
+				<span>Children:</span>
+				<input type="number" name="children" />
+			</label>
+			<button>
+				<span>Submit</span>
+			</button>
+		</form>
+	</section>
+</main>
+{% endblock %}

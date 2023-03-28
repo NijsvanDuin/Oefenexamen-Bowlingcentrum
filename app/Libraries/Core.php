@@ -4,8 +4,6 @@ namespace App\Libraries;
 
 use \Twig\Loader\FilesystemLoader;
 use \Twig\Environment;
-// use dd
-use \Symfony\Component\VarDumper\VarDumper;
 
 class Core
 {

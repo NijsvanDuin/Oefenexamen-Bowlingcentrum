@@ -3,6 +3,7 @@
 	<section>
 		<h1>Reservation page</h1>
 		<p>Here you can make a reservation</p>
+		<a href="{{ globals.urlRoot }}/reservation/create">Create</a>
 	</section>
 	<section>
 		<h3>Reservations</h3>
@@ -10,11 +11,16 @@
 			<thead>
 				<tr>
 					<th>ID</th>
+					<th>Preson ID</th>
+					<th>Track ID</th>
+					<th>Opening ID</th>
 					<th>Date</th>
 					<th>Time</th>
 					<th>Adults</th>
 					<th>Children</th>
 					<th>Active</th>
+					<th>Created at</th>
+					<th>Updated at</th>
 					<th></th>
 					<th></th>
 				</tr>
@@ -23,11 +29,16 @@
 				{% for reservation in reservations %}
 				<tr>
 					<td>{{ reservation.id }}</td>
+					<td>{{ reservation.person_id }}</td>
+					<td>{{ reservation.track_id }}</td>
+					<td>{{ reservation.opening_id }}</td>
 					<td>{{ reservation.date_reservation }}</td>
 					<td>{{ reservation.time_reservation }}</td>
 					<td>{{ reservation.adults }}</td>
 					<td>{{ reservation.children }}</td>
 					<td>{{ reservation.is_active }}</td>
+					<td>{{ reservation.created_at }}</td>
+					<td>{{ reservation.updated_at }}</td>
 					<td>
 						<a
 							href="{{ globals.urlRoot }}/reservation/edit/{{ reservation.id }}"
