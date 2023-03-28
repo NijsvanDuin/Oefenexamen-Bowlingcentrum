@@ -18,8 +18,7 @@ class ContactController extends Controller
         $rows = '';
         foreach ($result as $value) {
             $rows .= "<tr>
-                                <td>$value->first_name</td>
-                                <td>$value->last_name</td>
+                                <td>$value->personName</td>
                                 <td>$value->email</td>
                                 <td>$value->phone</td>
                                 <td>$value->created_at</td>
@@ -36,54 +35,83 @@ class ContactController extends Controller
         $this->view('Contact/index', $data);
     }
 
+    // public function update($id = NULL)
+    // {
+    //     var_dump($id);
+    //     $info = $this->contactModel->getSingleContactInfo($id);
+    //     var_dump($info);
+    //     $personId = '';
+    //     $naam = '';
+    //     if (!$info) {
+    //         foreach ($info as $value) {
+    //             $naam .= "$value->first_name" . " " . "$value->last_name";
+    //             $personId .= "$value->person_id";
+    //         }
+    //     }
+
+    //     switch ($_SERVER['REQUEST_METHOD']) {
+    //         case 'GET':
+    //             $info = $this->contactModel->getSingleContactInfo($id);
+
+    //             $data = [
+    //                 'title' => 'Contactgegevens updaten',
+    //                 'person_id' => $id
+
+    //             ];
+
+    //             $this->view('Contact/updatecontact', $data);
+    //             break;
+    //         case 'POST':
+    //             $updatedInfo = [
+    //                 'person_id' => $id,
+    //                 'name' => $_POST['name'],
+    //                 'email' => $_POST['email'],
+    //                 'phone' => $_POST['phone'],
+    //             ];
+
+    //             try {
+    //                 $this->contactModel->updateContactInfo($updatedInfo);
+    //                 header('Location: ' . URLROOT . '/Contact/index');
+    //             } catch (Exception $e) {
+    //                 $data = [
+    //                     'title' => 'Contactgegevens update',
+    //                     'error' => $e,
+    //                     'person_id' => $id
+    //                 ];
+    //                 $this->view('Contact/updatecontact', $data);
+    //             }
+    //             break;
+    //     }
+    // }
+
     public function update($id)
     {
-        $info = $this->contactModel->getContactById($id);
-        $personId = '';
-        $naam = '';
-        if (!$info) {
-            foreach ($info as $value) {
-                $naam .= "$value->first_name" . " " . "$value->last_name";
-                $personId .= "$value->person_id";
+        var_dump($id);
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // var_dump($_POST);
+            try {
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+                $this->contactModel->updateContactInfo($id, $_POST);
+                echo "<h2>De bestelling is sucsessful geupdate!</h2>";
+                header("Refresh:3; url=" . URLROOT . "/contactcontroller/index");
+            } catch (PDOException $e) {
+                echo "Het is niet gelukt om de bestelling te maken. Probeer het later opnieuw. <br>" . $e;
+                var_dump($_POST);
+                exit;
+                header("Refresh:3; url=" . URLROOT . "/contactcontroller/index");
             }
-        }
+        } else {
+            $info = $this->contactModel->getSingleContactInfo($id);
+            var_dump($info);
+            $data = [
+                'title' => "<h1>Update contact</h1>",
+                'person_id' => $id
+            ];
 
-        switch ($_SERVER['REQUEST_METHOD']) {
-            case 'GET':
-                $info = $this->contactModel->getContactById($id);
-
-                $data = [
-                    'title' => 'Contactgegevens updaten',
-                    'person_id' => $id
-
-                ];
-
-                $this->view('Contact/updatecontact', $data);
-                break;
-            case 'POST':
-                $updatedInfo = [
-                    'person_id' => $id,
-                    'first_name' => $_POST['first_name'],
-                    'last_name' => $_POST['last_name'],
-                    'email' => $_POST['email'],
-                    'phone' => $_POST['phone'],
-                ];
-
-                try {
-                    $this->contactModel->putReservation($updatedInfo);
-                    header('Location: ' . URLROOT . '/Contact/index');
-                } catch (Exception $e) {
-                    $data = [
-                        'title' => 'Edit reservation',
-                        'error' => $e,
-                        'person_id' => $id
-                    ];
-                    $this->view('contact/updatecontact', $data);
-                }
-                break;
+            $this->view("contact/updatecontact", $data);
         }
     }
-
 
     public function delete($userId)
     {
@@ -98,3 +126,4 @@ class ContactController extends Controller
         header("Refresh:2; url=" . URLROOT . "/Contact/index");
     }
 }
+
