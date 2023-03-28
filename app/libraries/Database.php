@@ -4,7 +4,7 @@
     private $dbUser = DB_USER;
     private $dbPass = DB_PASS;
     private $dbName = DB_NAME;
-    private $statement;
+    public $statement;
     private $dbHandler;
     private $error;    
 
@@ -76,4 +76,3 @@
       return $this->statement->rowCount();
     }
   }
-?>

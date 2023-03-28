@@ -1,5 +1,7 @@
+<?php require APPROOT  . '/views/includes/head.php'; ?>
 <section>
   <h3>Reservation</h3>
+  <a href="<?= URLROOT; ?>/reservation/create">Create</a>
   <table>
     <thead>
       <tr>
@@ -42,3 +44,4 @@
     </pre>
   </details>
 </section>
+<?php require APPROOT  . '/views/includes/footer.php'; ?>
