@@ -72,7 +72,7 @@ CREATE TABLE `opening` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `start` time NOT NULL,
   `end` time NOT NULL,
-  `day_name` int(11) NOT NULL,
+  `day_name` varchar(255) NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -154,3 +154,138 @@ CREATE TABLE `person_score` (
   CONSTRAINT `person_score_ibfk_1` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`),
   CONSTRAINT `person_score_ibfk_2` FOREIGN KEY (`score_id`) REFERENCES `score` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- insert placeholder data
+INSERT INTO `role` (`name`) VALUES ('admin'),('user');
+
+INSERT INTO person ( `first_name`,`last_name`,`phone` ) VALUES 
+  ('John','Doe','0612345671'),
+  ('Jane','Doe','0612345672'),
+  ('Mark','Doe','0612345673'),
+  ('Jill','Doe','0612345674'),
+  ('Bill','Doe','0612345675'),
+  ('Bob','Doe','0612345676'),
+  ('Sue','Doe','0612345677'),
+  ('Sally','Doe','0612345678'),
+  ('Joe','Doe','0612345679'),
+  ('Jack','Doe','0612345670'),
+  ('Jill','Doe','0612345611'),
+  ('Jen','Doe','0612345612');
+
+INSERT INTO `user` (`person_id`,`email`,`password`) VALUES
+  (1,'johndoe1@example.com','password'),
+  (2,'janedoe2@example.com','password'),
+  (3,'markdoe3@example.com','password'),
+  (4,'jilldoe4@example.com','password'),
+  (5,'billdoe5@example.com','password'),
+  (6,'bobdoe6@example.com','password'),
+  (7,'suedoe7@example.com','password'),
+  (8,'sallydoe8@example.com','password'),
+  (9,'joe9@example.com','password'),
+  (10,'jackdoe10@example.com','password'),
+  (11,'jilldoe11@example.com','password'),
+  (12,'jendoe12@example.com','password');
+
+INSERT INTO `user_role` (`user_id`,`role_id`) VALUES
+  (1,1),
+  (2,1),
+  (3,1),
+  (4,2),
+  (5,2),
+  (6,2),
+  (7,3),
+  (8,3),
+  (9,3),
+  (10,4),
+  (11,4),
+  (12,4);
+
+INSERT INTO `track` (`code`) VALUES 
+  ('1'),
+  ('2'),
+  ('3'),
+  ('4'),
+  ('5'),
+  ('6'),
+  ('7'),
+  ('8'),
+  ('9'),
+  ('10');
+
+INSERT INTO rate ( `amount`,`unit` ) VALUES
+  ( 24, 'per uur' ),
+  ( 28, 'per uur' ),
+  ( 33.5, 'per uur' );
+
+INSERT INTO opening ( `start`,`end`,`day_name` ) VALUES
+  ( '14:00:00', '22:00:00', 'maandag' ),
+  ( '14:00:00', '22:00:00', 'dinsdag' ),
+  ( '14:00:00', '22:00:00', 'woensdag' ),
+  ( '14:00:00', '22:00:00', 'donderdag' ),
+  ( '14:00:00', '24:00:00', 'vrijdag' ),
+  ( '14:00:00', '24:00:00', 'zaterdag' ),
+  ( '14:00:00', '24:00:00', 'zondag' );
+
+INSERT INTO contact ( `person_id`,`name`,`email`,`phone` ) VALUES
+  ( 1, 'John Doe', 'johndoe1@example.com','+31 1234567891'),
+  ( 2, 'Jane Doe', 'janedoe2@example.com','+31 1234567892'),
+  ( 3, 'Mark Doe', 'markdoe3@example.com','+31 1234567893'),
+  ( 4, 'Jill Doe', 'jilldoe4@example.com','+31 1234567894'),
+  ( 5, 'Bill Doe', 'billdoe5@example.com','+31 1234567895'),
+  ( 6, 'Bob Doe', 'bobdoe6@example.com','+31 1234567896'),
+  ( 7, 'Sue Doe', 'suedoe7@example.com','+31 1234567897'),
+  ( 8, 'Sally Doe', 'sallydoe8@example.com','+31 1234567898'),
+  ( 9, 'Joe Doe', 'joe9@example.com','+31 1234567899'),
+  ( 10, 'Jack Doe', 'jackdoe10@example.com','+31 1234567811'),
+  ( 11, 'Jill Doe', 'jilldoe11@example.com','+31 1234567812'),
+  ( 12, 'Jen Doe', 'jendoe12@example.com','+31 1234567813');
+
+INSERT INTO `option` (`name`) VALUES 
+  ('Snack pakket basic'),
+  ('Snack pakket deluxe'),
+  ('Kinderpartijtje'),
+  ('Vrijgezellenfeest'),
+  ('Bedrijfsuitje');
+
+INSERT INTO `score` (`value`) VALUES
+  (1),
+  (2),
+  (3),
+  (4),
+  (5);
+
+INSERT INTO `reservation` (`person_id`,`track_id`,`opening_id`,`adults`,`children`) VALUES
+  (1,1,1,2,0),
+  (2,2,2,2,4),
+  (3,3,3,2,0),
+  (4,4,4,2,2),
+  (5,5,5,2,0),
+  (6,6,6,4,0),
+  (7,7,7,2,0),
+  (8,8,8,2,0),
+  (9,9,9,6,0),
+  (10,10,10,2,0);
+
+INSERT INTO `reservation_option` (`reservation_id`,`option_id`) VALUES
+  (1,1),
+  (2,2),
+  (3,3),
+  (4,4),
+  (5,5),
+  (6,1),
+  (7,2),
+  (8,3),
+  (9,4),
+  (10,5);
+
+INSERT INTO `person_score` (`person_id`,`score_id`,`reservation_id`) VALUES
+  (1,1,1),
+  (2,2,2),
+  (3,3,3),
+  (4,4,4),
+  (5,5,5),
+  (6,1,6),
+  (7,2,7),
+  (8,3,8),
+  (9,4,9),
+  (10,5,10);
