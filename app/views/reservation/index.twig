@@ -1,0 +1,51 @@
+{% extends 'layouts/base.twig' %} {% block content %}
+<main>
+	<section>
+		<h1>Reservation page</h1>
+		<p>Here you can make a reservation</p>
+	</section>
+	<section>
+		<h3>Reservations</h3>
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Adults</th>
+					<th>Children</th>
+					<th>Active</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for reservation in reservations %}
+				<tr>
+					<td>{{ reservation.id }}</td>
+					<td>{{ reservation.date_reservation }}</td>
+					<td>{{ reservation.time_reservation }}</td>
+					<td>{{ reservation.adults }}</td>
+					<td>{{ reservation.children }}</td>
+					<td>{{ reservation.is_active }}</td>
+					<td>
+						<a
+							href="{{ globals.urlRoot }}/reservation/edit/{{ reservation.id }}"
+							>Edit</a
+						>
+					</td>
+					<td>
+						<a
+							href="{{ globals.urlRoot }}/reservation/delete/{{
+								reservation.id
+							}}"
+							>Delete</a
+						>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</section>
+</main>
+{% endblock %}
