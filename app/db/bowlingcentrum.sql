@@ -108,6 +108,8 @@ CREATE TABLE `reservation` (
   `person_id` int(11) NOT NULL,
   `track_id` int(11) NOT NULL,
   `opening_id` int(11) NOT NULL,
+  `date_reservation` date NOT NULL,
+  `time_reservation` time NOT NULL,
   `adults` int(11) NOT NULL,
   `children` int(11) NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
@@ -254,17 +256,17 @@ INSERT INTO `score` (`value`) VALUES
   (4),
   (5);
 
-INSERT INTO `reservation` (`person_id`,`track_id`,`opening_id`,`adults`,`children`) VALUES
-  (1,1,1,2,0),
-  (2,2,2,2,4),
-  (3,3,3,2,0),
-  (4,4,4,2,2),
-  (5,5,5,2,0),
-  (6,6,6,4,0),
-  (7,7,7,2,0),
-  (8,8,8,2,0),
-  (9,9,9,6,0),
-  (10,10,10,2,0);
+INSERT INTO `reservation` (`person_id`,`track_id`,`opening_id`,`date_reservation`,`time_reservation`,`adults`,`children`) VALUES
+  (1,1,1,'2023.03.28','14:00:12',2,0),
+  (2,2,2,'2023.03.29','14:00:12',2,4),
+  (3,3,3,'2023.03.30','14:00:12',2,0),
+  (4,4,4,'2023.04.03','14:00:12',2,2),
+  (5,5,5,'2023.04.12','14:00:12',2,0),
+  (6,6,6,'2023.04.12','14:00:12',4,0),
+  (7,7,7,'2023.04.14','14:00:12',2,0),
+  (8,8,8,'2023.04.14','14:00:12',2,0),
+  (9,9,9,'2023.04.14','14:00:12',6,0),
+  (10,10,10,'2023.04.14','14:00:12',2,0);
 
 INSERT INTO `reservation_option` (`reservation_id`,`option_id`) VALUES
   (1,1),
