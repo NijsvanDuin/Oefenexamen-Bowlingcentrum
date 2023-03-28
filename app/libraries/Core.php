@@ -1,8 +1,10 @@
 <?php
+
 /**
  * 
  */
-class Core {
+class Core
+{
   protected $currentController = 'Homepages';
   protected $currentMethod = 'index';
   protected $params = [];
@@ -37,24 +39,24 @@ class Core {
       }
     }
 
-    $this->params = $url ? array_values($url): [];
+    $this->params = $url ? array_values($url) : [];
 
     call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
   }
 
-  public function getURL() {
+  public function getURL()
+  {
     // de $_GET['url'] komt van /public/.htaccess regel 7
     if (isset($_GET['url'])) {
       // Haal de backslash vooraan de url af
       $url = rtrim($_GET['url'], '/');
 
       $url = filter_var($url, FILTER_SANITIZE_URL);
-      
-      $url = explode('/', $url);     
+
+      $url = explode('/', $url);
       return $url;
-    } else {      
+    } else {
       return array('homepages', 'index');
     }
-
   }
 }
