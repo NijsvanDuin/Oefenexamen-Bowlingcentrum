@@ -1,22 +1,78 @@
-body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+body, html {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
-#test {
-  display: none;
+* {
+    box-sizing: border-box;
 }
 
-.errorForm {
-    color: red;
-    font-size: 0.7em;
+header nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    background-color: #F4CC63;
 }
 
-table, th, td {
-    border: 2px solid black;
-    border-collapse: collapse;
+li {
+    list-style-type: none;
+}
+
+a.nav {
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+}
+
+a.nav:hover {
+    color: white;
+}
+
+section {
     text-align: center;
+    margin-top: 5%;
+}
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+}
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif; 
+}
+h3 {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+}
+div.contact_info {
+    width: 80%;
+    margin: 0 auto;
+}
+table {
+    width: 100%;
+    text-align: left;
+}
+table, th, td {
+    /* border: 1px solid black; */
+    border-collapse: collapse;
+    padding: 1rem;
+}
+th.edit, th.delete {
+    width: 10%;
 }
 
-.remark {
-    color: red;
+tr:nth-child(odd) {
+    /* background-color:#e7bd53; */
+}
+th {
+    background-color: rgb(245, 208, 88);
 }
