@@ -10,105 +10,35 @@ class Result extends Controller
 
   public function __construct()
   {
-    $this->personScore = $this->model('PersonScore');
+    require_once '../app/Models/PersonScore.php';
+    $this->personScore = new \App\Models\PersonScore();
   }
 
   public function index()
   {
+    $sessions = $this->personScore->getSessionsByPerson(4);
+    $selected = $sessions[0]->id;
+
     switch ($_SERVER['REQUEST_METHOD']) {
       case 'POST':
-
-        if (isset($_POST['date']) && !empty($_POST['date']) && $_POST['date'] != 'all') {
-          $this->setData([
-            'title' => 'Result',
-            'personScores' => $this->personScore->allByPersonDate(4, $_POST)
-          ]);
-        } else {
-          $this->setData([
-            'title' => 'Result',
-            'personScores' => $this->personScore->allByPerson(4)
-          ]);
-        }
-
-        $this->view('result/index');
-
-        break;
-      case 'GET':
         $this->setData([
-          'title' => 'Result',
-          'personScores' => $this->personScore->allByPerson()
+          'title' => 'Resultaten',
+          'scores' => $this->personScore->getSessionScore($selected),
+          'sessions' => $sessions,
+          'selected' => empty($_POST['session']) ? $sessions[0]->id : (int) $_POST['session'],
         ]);
 
         $this->view('result/index');
         break;
-    }
-  }
-
-  public function players()
-  {
-    $this->setData([
-      'title' => 'Players',
-      'personScores' => $this->personScore->all()
-    ]);
-
-    $this->view('result/players');
-  }
-
-  public function edit($person)
-  {
-    switch ($_SERVER['REQUEST_METHOD']) {
-      case 'POST':
-
-        if (isset($_POST['date']) && !empty($_POST['date']) && $_POST['date'] != 'all') {
-          $this->setData([
-            'title' => 'Result',
-            'personScores' => $this->personScore->allPersonOnlyDate($person, $_POST),
-            'person' => $person,
-          ]);
-        } else {
-          $this->setData([
-            'title' => 'Result',
-            'personScores' => $this->personScore->allPersonOnly($person),
-            'person' => $person,
-          ]);
-        }
-
-        $this->view('result/edit');
-
-        break;
       case 'GET':
         $this->setData([
-          'title' => 'Result',
-          'personScores' => $this->personScore->allPersonOnly($person),
-          'person' => $person
+          'title' => 'Resultaten',
+          'scores' => $this->personScore->getSessionScore($selected),
+          'sessions' => $sessions,
+          'selected' => $selected,
         ]);
 
-        $this->view('result/edit');
-        break;
-    }
-  }
-
-  public function update($id)
-  {
-    switch ($_SERVER['REQUEST_METHOD']) {
-      case 'POST':
-        $this->personScore->update($id, $_POST);
-
-        echo "Aantal punten bijgewerkt!";
-
-        header("refresh:2;url=/result/players");
-
-        break;
-      case 'GET':
-        // dd($this->personScore->find($id));
-
-        $this->setData([
-          'title' => 'Update',
-          'personScores' => $this->personScore->find($id),
-          'id' => $id
-        ]);
-
-        $this->view('result/update');
+        $this->view('result/index');
         break;
     }
   }

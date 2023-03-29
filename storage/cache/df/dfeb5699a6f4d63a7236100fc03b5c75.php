@@ -48,7 +48,7 @@ class __TwigTemplate_bcb78b1d96a3269677a2efd788c21937 extends Template
 \t\t\t<a href=\"";
         // line 6
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["globals"] ?? null), "urlRoot", [], "any", false, false, false, 6), "html", null, true);
-        echo "/result/players\">Spelers</a>
+        echo "/persons\">Personen</a>
 \t\t</li>
 \t</ul>
 </nav>

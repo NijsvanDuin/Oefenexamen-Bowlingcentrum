@@ -21,16 +21,6 @@ class Controller
     echo $this->twig->render($template . '.twig', $this->data);
   }
 
-  protected function model(string $model): object
-  {
-    if (!file_exists('../app/Models/' . $model . '.php')) die('Model not found');
-    require_once '../app/Models/' . $model . '.php';
-
-    $model = '\\App\\Models\\' . $model;
-
-    return new $model();
-  }
-
   protected function setData(array $data): void
   {
     $this->data = $data;

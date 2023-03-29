@@ -14,148 +14,74 @@ class PersonScore
     $this->db = new Database($_ENV['DB_HOST'], $_ENV['DB_NAME'], $_ENV['DB_USER'], $_ENV['DB_PASS']);
   }
 
-  public function all()
-  {
-    // select every person that has a score/has played a game no duplicates
-    $this->db->query("SELECT
-    	  person.id,
-        person.first_name,
-        person.insertion,
-        person.last_name
-    FROM
-        person_score
-    INNER JOIN person ON person_score.person_id = person.id
-    INNER JOIN reservation ON person_score.reservation_id = reservation.id
-    GROUP BY person.id
-    ORDER BY person.id ASC
-    ");
-
-    return $this->db->resultSet();
-  }
-
-  public function allByPerson($personId)
+  public function getSessionScore(int $sessionId): array
   {
     $this->db->query("SELECT
-      `person_score`.`score_id` AS `score_id`
-      ,`person`.`first_name`
-      ,`person`.`insertion`
-      ,`person`.`last_name`
-      ,`score`.`value`
-      ,`score`.`created_at` AS `score_created_at`
-    FROM person_score 
-    INNER JOIN person ON person_score.person_id = person.id 
-    INNER JOIN score ON person_score.score_id = score.id 
-    INNER JOIN reservation ON person_score.reservation_id = reservation.id
-    WHERE `reservation`.`person_id` = :person_id
-    ORDER BY score.value DESC
-    ");
-
-    $this->db->bind(':person_id', $personId);
-
-    return $this->db->resultSet();
-  }
-
-  public function allPersonOnly($person)
-  {
-    $this->db->query("SELECT
-                          `person_score`.`score_id` AS `score_id`,
-                          `person`.`first_name`,
-                          `person`.`insertion`,
-                          `person`.`last_name`,
-                          `score`.`value`,
-                          `score`.`created_at` AS `score_created_at`
+                          person.first_name,
+                          person.insertion,
+                          person.last_name,
+                          score.value,
+                          score.created_at
                       FROM
                           person_score
-                      INNER JOIN person ON person_score.person_id = person.id
-                      INNER JOIN score ON person_score.score_id = score.id
-                      INNER JOIN reservation ON person_score.reservation_id = reservation.id
+                      INNER JOIN 
+                          person ON person_score.person_id = person.id
+                      INNER JOIN 
+                          score ON person_score.score_id = score.id
                       WHERE
-                          `person`.`id` = :person_id
-    ");
-
-    $this->db->bind(':person_id', $person);
-
+                          person_score.reservation_id = :sessionId
+                      ORDER BY
+                          score.value 
+                      DESC");
+    $this->db->bind(':sessionId', $sessionId);
     return $this->db->resultSet();
   }
 
-  public function allByPersonDate($person, $data)
+  public function getSessionsByPerson(int $personId): array
   {
-    $this->db->query("SELECT
-      `person_score`.`score_id` AS `score_id`
-      ,`person`.`first_name`
-      ,`person`.`insertion`
-      ,`person`.`last_name`
-      ,`score`.`value`
-      ,`score`.`created_at` AS `score_created_at`
-    FROM person_score 
-    INNER JOIN person ON person_score.person_id = person.id 
-    INNER JOIN score ON person_score.score_id = score.id 
-    INNER JOIN reservation ON person_score.reservation_id = reservation.id
-    WHERE `reservation`.`person_id` = :person_id
-    AND `score`.`created_at` = :date
-    ORDER BY score.value DESC
-    ");
-
-    $this->db->bind(':person_id', $person);
-    $this->db->bind(':date', $data['date']);
-
+    $this->db->query("SELECT reservation.id, reservation.date FROM reservation WHERE reservation.person_id = :personId ORDER BY reservation.date DESC");
+    $this->db->bind(':personId', $personId);
     return $this->db->resultSet();
   }
 
-  public function allPersonOnlyDate($person, $data)
+  public function getScoresByPerson(int $personId): array
   {
     $this->db->query("SELECT
-      `person_score`.`score_id` AS `score_id`
-      ,`person`.`first_name`
-      ,`person`.`insertion`
-      ,`person`.`last_name`
-      ,`score`.`value`
-      ,`score`.`created_at` AS `score_created_at`
-    FROM person_score 
-    INNER JOIN person ON person_score.person_id = person.id 
-    INNER JOIN score ON person_score.score_id = score.id 
-    INNER JOIN reservation ON person_score.reservation_id = reservation.id
-    WHERE `person`.`id` = :person_id
-    AND `score`.`created_at` = :date
-    ORDER BY score.value DESC
-    ");
-
-    $this->db->bind(':person_id', $person);
-    $this->db->bind(':date', $data['date']);
-
+                          score.id,
+                          score.value,
+                          score.created_at
+                      FROM
+                          person_score
+                      INNER JOIN 
+                          score ON person_score.score_id = score.id
+                      WHERE
+                          person_score.person_id = :personId
+                      ORDER BY
+                          score.value 
+                      DESC");
+    $this->db->bind(':personId', $personId);
     return $this->db->resultSet();
   }
 
-  public function find($id)
+  public function getScoresById(int $id): object
   {
     $this->db->query("SELECT
-      `person_score`.`person_id` AS `person_id`
-      ,`person`.`first_name`
-      ,`person`.`insertion`
-      ,`person`.`last_name`
-      ,`score`.`value`
-      ,`score`.`created_at` AS `score_created_at`
-    FROM person_score 
-    INNER JOIN person ON person_score.person_id = person.id 
-    INNER JOIN score ON person_score.score_id = score.id 
-    INNER JOIN reservation ON person_score.reservation_id = reservation.id
-    INNER JOIN user ON user.person_id = person.id
-    WHERE `score`.`id` = :id
-
-    ");
-
+                          score.id,
+                          score.value,
+                          score.created_at
+                      FROM 
+                          score 
+                      WHERE
+                          id = :id");
     $this->db->bind(':id', $id);
-
     return $this->db->single();
   }
 
-  public function update($id, $data)
+  public function updateScore(int $id, int $value): void
   {
     $this->db->query("UPDATE score SET value = :value WHERE id = :id");
-
     $this->db->bind(':id', $id);
-    $this->db->bind(':value', $data['value']);
-
-    return $this->db->execute();
+    $this->db->bind(':value', $value);
+    $this->db->execute();
   }
 }

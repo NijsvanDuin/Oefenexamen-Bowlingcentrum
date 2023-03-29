@@ -3,27 +3,15 @@ insertion last_name score_created_at value #}
 
 <main class="flex flex-col">
 	<section class="flex gap-2">
-		<h1>Overzicht uitslag</h1>
-		<form method="get" action="{{ globals.urlRoot }}/result">
-			<select name="date">
-				<option value="all">Alle data</option>
-				{% for date in personScores %}
-				<option value="{{ date.score_created_at }}">
-					{{ date.score_created_at }}
-				</option>
-				{% endfor %}
-			</select>
-			<input type="submit" value="Zoek" />
-		</form>
+		<h1>Personen overzicht</h1>
 	</section>
 	<section>
-		{% if personScores is empty %}
+		{% if persons is empty %}
 		<span> Er zijn geen resultaten </span>
 		{% else %}
 		<table>
 			<thead>
 				<tr>
-					<th>Id</th>
 					<th>Voornaam</th>
 					<th>Tussenvoegsel</th>
 					<th>Achternaam</th>
@@ -31,15 +19,14 @@ insertion last_name score_created_at value #}
 				</tr>
 			</thead>
 			<tbody>
-				{% for result in personScores %}
+				{% for result in persons %}
 				<tr>
-					<td>{{ result.id }}</td>
 					<td>{{ result.first_name }}</td>
 					<td>{{ result.insertion }}</td>
 					<td>{{ result.last_name }}</td>
 					<td>
-						<a href="{{ globals.urlRoot }}/result/edit/{{ result.id }}"
-							>Detail</a
+						<a href="{{ globals.urlRoot }}/persons/detail/{{ result.id }}"
+							>Bekijk</a
 						>
 					</td>
 				</tr>

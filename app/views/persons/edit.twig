@@ -1,0 +1,21 @@
+{% include "layouts/base.twig" %} {% block content %} {# data: first_name
+insertion last_name score_created_at value #}
+
+<main class="flex flex-col">
+	<section class="flex gap-2">
+		<h1>Bewerk score</h1>
+	</section>
+	<section>
+		<form
+			action="{{ globals.urlRoot }}/persons/edit/{{ score.id }}"
+			method="post"
+		>
+			<label>
+				Score
+				<input type="text" name="value" value="{{ score.value }}" />
+			</label>
+			<input type="submit" value="Bewerk" />
+		</form>
+	</section>
+</main>
+{% endblock %}
