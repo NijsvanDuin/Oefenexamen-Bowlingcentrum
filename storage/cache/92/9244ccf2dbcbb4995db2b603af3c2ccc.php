@@ -44,20 +44,24 @@ class __TwigTemplate_fa2df746fa979e28685472da59b909a5 extends Template
         // line 6
         echo twig_escape_filter($this->env, ($context["title"] ?? null), "html", null, true);
         echo "</title>
+\t\t<link rel=\"stylesheet\" href=\"";
+        // line 7
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["globals"] ?? null), "urlRoot", [], "any", false, false, false, 7), "html", null, true);
+        echo "/css/style.css\" />
 \t</head>
 \t<body>
 \t\t";
-        // line 9
-        $this->loadTemplate("layouts/navbar.twig", "layouts/base.twig", 9)->display($context);
+        // line 10
+        $this->loadTemplate("layouts/navbar.twig", "layouts/base.twig", 10)->display($context);
         echo " ";
         $this->displayBlock('content', $context, $blocks);
-        // line 10
+        // line 11
         echo "\t</body>
 </html>
 ";
     }
 
-    // line 9
+    // line 10
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -75,7 +79,7 @@ class __TwigTemplate_fa2df746fa979e28685472da59b909a5 extends Template
 
     public function getDebugInfo()
     {
-        return array (  61 => 9,  55 => 10,  51 => 9,  45 => 6,  38 => 1,);
+        return array (  65 => 10,  59 => 11,  55 => 10,  49 => 7,  45 => 6,  38 => 1,);
     }
 
     public function getSourceContext()
