@@ -5,8 +5,6 @@
         filter = input.value.toUpperCase();
         table = document.getElementById("tableData");
         tr = table.getElementsByTagName("tr");
-        // if(input != txtValue) {document.getElementById("errorMessageDate").innerHTML = "Er is geen reserveringsinformatie beschikbaar voor deze geselecteerde datum te zien";}
-        // else {document.getElementById("errorMessageDate").innerHTML = "Er is een reservering";}
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[3];
             if (td) {

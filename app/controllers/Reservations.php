@@ -65,13 +65,12 @@ class Reservations extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             try {
-                var_dump($_POST['track_id']);
 
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 // $this->reservationModel->updateTrack($_POST, $reservationId);
                 $this->reservationModel->updateTrack($_POST, $trackId);
                 echo "Het baannummer is gewijzigd";
-                // header("Refresh:3; " . URLROOT . "/reservations/reservations");
+                header("Refresh:3; " . URLROOT . "/reservations/reservations");
             } catch (PDOException $e) {
                 echo "Deze baan is ongeschikt voor kinderen omdat deze geen hekjes heeft" . $e;
                 exit;
