@@ -1,16 +1,10 @@
 body {
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	background-color: #000;
-	color: #fff;
 }
 
-#test {
-	display: none;
-}
-
-.errorForm {
-	color: red;
-	font-size: 0.7em;
+*:where(ul, form) {
+	margin: 0;
+	padding: 0;
 }
 
 table,
@@ -21,25 +15,15 @@ td {
 	text-align: center;
 }
 
-a {
-	color: #fff;
-	text-decoration: none;
-}
-
-.remark {
-	color: red;
-}
-
-*:where(form, span) {
+.flex {
 	display: flex;
+	align-items: center;
+}
+
+.flex-col {
 	flex-direction: column;
-	gap: 0.5em;
 }
 
-.p-2 {
-	padding: 1em; // 1em = 16px
-}
-
-.w-full {
-	width: 100%;
+.gap-2 {
+	gap: 0.5rem;
 }

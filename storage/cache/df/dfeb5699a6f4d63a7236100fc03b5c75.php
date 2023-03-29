@@ -43,7 +43,13 @@ class __TwigTemplate_bcb78b1d96a3269677a2efd788c21937 extends Template
 \t\t<li><a href=\"";
         // line 4
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["globals"] ?? null), "urlRoot", [], "any", false, false, false, 4), "html", null, true);
-        echo "/reservation\">Reservation</a></li>
+        echo "/result\">Uitslagen</a></li>
+\t\t<li>
+\t\t\t<a href=\"";
+        // line 6
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["globals"] ?? null), "urlRoot", [], "any", false, false, false, 6), "html", null, true);
+        echo "/result/players\">Spelers</a>
+\t\t</li>
 \t</ul>
 </nav>
 ";
@@ -61,7 +67,7 @@ class __TwigTemplate_bcb78b1d96a3269677a2efd788c21937 extends Template
 
     public function getDebugInfo()
     {
-        return array (  45 => 4,  41 => 3,  37 => 1,);
+        return array (  50 => 6,  45 => 4,  41 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
