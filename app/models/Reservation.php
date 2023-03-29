@@ -29,6 +29,26 @@ class Reservation
         $result = $this->db->resultSet();
         return $result;
     }
+
+
+    public function getSingleTrack($trackId)
+    {
+        $this->db->query("SELECT reservation.id, reservation.track_id as trackId FROM reservation WHERE id = $trackId");
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+    public function getTracks() {
+        $this->db->query("SELECT reservation.id, reservation.track_id as trackId FROM reservation");
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+    // public function getSingleTrack($id)
+    // {
+    //     $this->db->query("SELECT reservation.id, reservation.track_id as trackId FROM reservation WHERE reservation.id = $id");
+    // }
+
     public function getReservations2()
     {
         $this->db->query("SELECT 
@@ -39,6 +59,7 @@ class Reservation
                                 ,reservation.date_reservation
                                 ,reservation.adults
                                 ,reservation.children
+                                ,track.id as trackid
                                 ,track.code
                                 ,track.has_lanes
                                 FROM reservation
@@ -46,5 +67,16 @@ class Reservation
                                 INNER JOIN track ON reservation.track_id = track.id");
         $result = $this->db->resultSet();
         return $result;
+    }
+
+    public function updateTrack($trackId, $post)
+    {
+        $this->db->query("    UPDATE `reservation`
+                                SET `track_id` = :newTrack
+                                WHERE `id` = :trackId");
+
+        $this->db->bind(':trackId', $trackId, PDO::PARAM_INT);
+        $this->db->bind(':newTrack', $post['track_id'], PDO::PARAM_INT);
+        return $this->db->execute();
     }
 }
