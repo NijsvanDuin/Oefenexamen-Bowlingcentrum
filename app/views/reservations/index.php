@@ -6,11 +6,10 @@
         <div class="title">
             <h1><?= $data['title']; ?></h1>
         </div>
+        <!-- Selecteer een datum en zoekt dan door de tabel data naar soortgelijke data -->
         <div class="filter">
-            <form action="<?= URLROOT;?>/reservations/selectDate" method="get">
-                <input type="date" name="date_reservation" id="date_reservation">
-                <input type="submit" value="Tonen">
-            </form>
+                <input type="date" id="date_reservation">
+                <input type="submit" value="Tonen" onclick="myFunction()">
         </div>
     </div>
     <div class="reservation_info">
@@ -32,4 +31,10 @@
             </tbody>
         </table>
     </div>
+
+    <h4 id="errorMessageDate"></h4>
 </section>
+
+<script src="../../../public/js/app.js"></script>
+
+
