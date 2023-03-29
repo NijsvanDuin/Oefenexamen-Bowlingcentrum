@@ -11,6 +11,7 @@ class Core
   protected object $currentController;
   protected string $currentMethod = 'index';
   protected array $params = [];
+  public mixed $query = [];
 
   public function __construct()
   {
@@ -33,6 +34,11 @@ class Core
   protected function getURL(): array
   {
     $url = isset($_SERVER['REQUEST_URI']) ? rtrim($_SERVER['REQUEST_URI'], '/') : 'homepages/index';
+
+    $this->query = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
+    if (!empty($query)) {
+      $url .= '?' . $query;
+    }
 
     $url = filter_var($url, FILTER_SANITIZE_URL);
 
