@@ -7,7 +7,12 @@ first_name insertion last_name score_created_at value #}
 		<form action="{{ globals.urlRoot }}/result/update/{{ id }}" method="post">
 			<label>
 				Aantal punten:
-				<input type="number" name="value" value="{{ personScores.value }}" />
+				<input
+					type="number"
+					name="value"
+					value="{{ personScores.value }}"
+					max="300"
+				/>
 			</label>
 			<input type="submit" value="Wijzig" />
 		</form>

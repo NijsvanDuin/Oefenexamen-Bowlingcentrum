@@ -98,48 +98,59 @@ class __TwigTemplate_4a4bee2cef5ffe21828c83ca3ce0ef24 extends Template
 \t\t\t\t\t<th>Achternaam</th>
 \t\t\t\t\t<th>Score</th>
 \t\t\t\t\t<th>Datum</th>
+\t\t\t\t\t<td></td>
 \t\t\t\t</tr>
 \t\t\t</thead>
 \t\t\t<tbody>
 \t\t\t\t";
-            // line 34
+            // line 35
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(($context["personScores"] ?? null));
             foreach ($context['_seq'] as $context["_key"] => $context["result"]) {
-                // line 35
+                // line 36
                 echo "\t\t\t\t<tr>
 \t\t\t\t\t<td>";
-                // line 36
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["result"], "first_name", [], "any", false, false, false, 36), "html", null, true);
-                echo "</td>
-\t\t\t\t\t<td>";
                 // line 37
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["result"], "insertion", [], "any", false, false, false, 37), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["result"], "first_name", [], "any", false, false, false, 37), "html", null, true);
                 echo "</td>
 \t\t\t\t\t<td>";
                 // line 38
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["result"], "last_name", [], "any", false, false, false, 38), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["result"], "insertion", [], "any", false, false, false, 38), "html", null, true);
                 echo "</td>
 \t\t\t\t\t<td>";
                 // line 39
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["result"], "value", [], "any", false, false, false, 39), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["result"], "last_name", [], "any", false, false, false, 39), "html", null, true);
                 echo "</td>
 \t\t\t\t\t<td>";
                 // line 40
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["result"], "score_created_at", [], "any", false, false, false, 40), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["result"], "value", [], "any", false, false, false, 40), "html", null, true);
                 echo "</td>
+\t\t\t\t\t<td>";
+                // line 41
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["result"], "score_created_at", [], "any", false, false, false, 41), "html", null, true);
+                echo "</td>
+\t\t\t\t\t<td>
+\t\t\t\t\t\t<a href=\"";
+                // line 43
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["globals"] ?? null), "urlRoot", [], "any", false, false, false, 43), "html", null, true);
+                echo "/result/update/";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["result"], "score_id", [], "any", false, false, false, 43), "html", null, true);
+                echo "\"
+\t\t\t\t\t\t\t>Wijzig</a
+\t\t\t\t\t\t>
+\t\t\t\t\t</td>
 \t\t\t\t</tr>
 \t\t\t\t";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['result'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 43
+            // line 49
             echo "\t\t\t</tbody>
 \t\t</table>
 \t\t";
         }
-        // line 46
+        // line 52
         echo "\t</section>
 </main>
 ";
@@ -157,7 +168,7 @@ class __TwigTemplate_4a4bee2cef5ffe21828c83ca3ce0ef24 extends Template
 
     public function getDebugInfo()
     {
-        return array (  143 => 46,  138 => 43,  129 => 40,  125 => 39,  121 => 38,  117 => 37,  113 => 36,  110 => 35,  106 => 34,  93 => 23,  89 => 21,  87 => 20,  80 => 15,  71 => 12,  66 => 11,  62 => 10,  54 => 7,  48 => 3,  38 => 1,);
+        return array (  154 => 52,  149 => 49,  135 => 43,  130 => 41,  126 => 40,  122 => 39,  118 => 38,  114 => 37,  111 => 36,  107 => 35,  93 => 23,  89 => 21,  87 => 20,  80 => 15,  71 => 12,  66 => 11,  62 => 10,  54 => 7,  48 => 3,  38 => 1,);
     }
 
     public function getSourceContext()

@@ -141,6 +141,7 @@ class PersonScore
     INNER JOIN reservation ON person_score.reservation_id = reservation.id
     INNER JOIN user ON user.person_id = person.id
     WHERE `score`.`id` = :id
+
     ");
 
     $this->db->bind(':id', $id);

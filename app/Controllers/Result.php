@@ -36,7 +36,7 @@ class Result extends Controller
       case 'GET':
         $this->setData([
           'title' => 'Result',
-          'personScores' => $this->personScore->allByPerson(4)
+          'personScores' => $this->personScore->allByPerson()
         ]);
 
         $this->view('result/index');
@@ -100,6 +100,8 @@ class Result extends Controller
 
         break;
       case 'GET':
+        // dd($this->personScore->find($id));
+
         $this->setData([
           'title' => 'Update',
           'personScores' => $this->personScore->find($id),

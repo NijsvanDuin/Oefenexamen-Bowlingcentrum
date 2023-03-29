@@ -28,6 +28,7 @@ insertion last_name score_created_at value #}
 					<th>Achternaam</th>
 					<th>Score</th>
 					<th>Datum</th>
+					<td></td>
 				</tr>
 			</thead>
 			<tbody>
@@ -38,6 +39,11 @@ insertion last_name score_created_at value #}
 					<td>{{ result.last_name }}</td>
 					<td>{{ result.value }}</td>
 					<td>{{ result.score_created_at }}</td>
+					<td>
+						<a href="{{ globals.urlRoot }}/result/update/{{ result.score_id }}"
+							>Wijzig</a
+						>
+					</td>
 				</tr>
 				{% endfor %}
 			</tbody>

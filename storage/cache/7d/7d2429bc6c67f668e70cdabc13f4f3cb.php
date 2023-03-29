@@ -57,10 +57,15 @@ class __TwigTemplate_10efbb95dc2be528c4b264adb57929bd extends Template
         echo "\" method=\"post\">
 \t\t\t<label>
 \t\t\t\tAantal punten:
-\t\t\t\t<input type=\"number\" name=\"value\" value=\"";
-        // line 10
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["personScores"] ?? null), "value", [], "any", false, false, false, 10), "html", null, true);
-        echo "\" />
+\t\t\t\t<input
+\t\t\t\t\ttype=\"number\"
+\t\t\t\t\tname=\"value\"
+\t\t\t\t\tvalue=\"";
+        // line 13
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["personScores"] ?? null), "value", [], "any", false, false, false, 13), "html", null, true);
+        echo "\"
+\t\t\t\t\tmax=\"300\"
+\t\t\t\t/>
 \t\t\t</label>
 \t\t\t<input type=\"submit\" value=\"Wijzig\" />
 \t\t</form>
@@ -81,7 +86,7 @@ class __TwigTemplate_10efbb95dc2be528c4b264adb57929bd extends Template
 
     public function getDebugInfo()
     {
-        return array (  62 => 10,  54 => 7,  48 => 3,  38 => 1,);
+        return array (  65 => 13,  54 => 7,  48 => 3,  38 => 1,);
     }
 
     public function getSourceContext()

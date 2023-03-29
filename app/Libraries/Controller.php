@@ -45,14 +45,4 @@ class Controller
   {
     return $this->data;
   }
-
-  protected function addGlobal(string $key, $value): void
-  {
-    $this->globals[$key] = $value;
-  }
-
-  protected function addGlobals(array $globals): void
-  {
-    $this->globals = array_merge($this->globals, $globals);
-  }
 }
