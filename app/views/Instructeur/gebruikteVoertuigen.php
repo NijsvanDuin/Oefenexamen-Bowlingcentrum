@@ -18,5 +18,5 @@
     </tbody>
 </table>
 
-<a href="<?= URLROOT;?>/homepages/index">home</a>
+<a href="<?= URLROOT; ?>/homepages/index">home</a>
 <?php require APPROOT . '/views/includes/footer.php'; ?>

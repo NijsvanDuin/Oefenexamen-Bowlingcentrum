@@ -13,6 +13,13 @@ class Reservation extends Controller
     {
         $reserveringen = $this->reservationModel->getReservation();
 
+        $getDate = $this->reservationModel->getDate();
+
+        if (Date("date") > "28-12-2022") {
+            $rows = "<tr><td colspan='6'> Er is geen informatie over deze periode</td></tr>";
+            header('Refresh:3; url=' . URLROOT . '/reservation/index');
+        } else {
+        }
         $rows = '';
         foreach ($reserveringen as $value) {
             $rows .= "<tr>

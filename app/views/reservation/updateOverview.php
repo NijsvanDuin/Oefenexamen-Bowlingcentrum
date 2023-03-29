@@ -2,12 +2,6 @@
 require APPROOT  . '/views/includes/head.php';
 ?>
 <h3><u><?= $data['title']; ?></u></h3><br>
-<h5>
-    <form action="controllers/Reservation"></form>
-    Reservering van: <?= $data['reservationCustomer']; ?>
-    <input type="date" id="Date" name="Date">
-    <input type="submit" name=viewDate value="Toon Reserveringen">
-</h5>
 <br>
 
 <table border=1>

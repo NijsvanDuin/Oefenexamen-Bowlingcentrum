@@ -28,4 +28,19 @@ class ReservationModel
         $result = $this->db->resultSet();
         return $result;
     }
+
+    public function getDate()
+    {
+        $sql = "SELECT reservation.date_reservation
+                
+                FROM reservation;";
+
+        $this->db->query($sql);
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+    public function updateOption()
+    {
+    }
 }
