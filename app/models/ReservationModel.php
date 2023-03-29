@@ -18,7 +18,7 @@ class ReservationModel
                        reservation.start_time,
                        reservation.end_time,
                        reservation.adults,
-                       reservation.children
+                       reservation.children,
                 
                 FROM reservation
                 INNER JOIN person
@@ -42,5 +42,7 @@ class ReservationModel
 
     public function updateOption()
     {
+        $sql = "UPDATE option
+                SET option.name = ;";
     }
 }
