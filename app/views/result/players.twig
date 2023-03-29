@@ -1,0 +1,52 @@
+{% include "layouts/base.twig" %} {% block content %} {# data: first_name
+insertion last_name score_created_at value #}
+
+<main class="flex flex-col">
+	<section class="flex gap-2">
+		<h1>Overzicht uitslag</h1>
+		<form method="get" action="{{ globals.urlRoot }}/result">
+			<select name="date">
+				<option value="all">Alle data</option>
+				{% for date in personScores %}
+				<option value="{{ date.score_created_at }}">
+					{{ date.score_created_at }}
+				</option>
+				{% endfor %}
+			</select>
+			<input type="submit" value="Zoek" />
+		</form>
+	</section>
+	<section>
+		{% if personScores is empty %}
+		<span> Er zijn geen resultaten </span>
+		{% else %}
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Voornaam</th>
+					<th>Tussenvoegsel</th>
+					<th>Achternaam</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for result in personScores %}
+				<tr>
+					<td>{{ result.id }}</td>
+					<td>{{ result.first_name }}</td>
+					<td>{{ result.insertion }}</td>
+					<td>{{ result.last_name }}</td>
+					<td>
+						<a href="{{ globals.urlRoot }}/result/edit/{{ result.id }}"
+							>Detail</a
+						>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% endif %}
+	</section>
+</main>
+{% endblock %}
