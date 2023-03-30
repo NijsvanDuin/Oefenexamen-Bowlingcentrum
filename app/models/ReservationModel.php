@@ -18,7 +18,7 @@ class ReservationModel
                        reservation.start_time,
                        reservation.end_time,
                        reservation.adults,
-                       reservation.children,
+                       reservation.children
                 
                 FROM reservation
                 INNER JOIN person
