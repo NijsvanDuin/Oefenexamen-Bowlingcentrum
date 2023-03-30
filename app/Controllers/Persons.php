@@ -44,11 +44,29 @@ class Persons extends BaseController
         try {
           $this->personScore->updateScore($id, $_POST['value']);
 
-          echo "<span>Score is aangepast</span>";
+          $this->setData([
+            'title' => 'Resultaten',
+            'msg' => [
+              'title' => 'Succes',
+              'body' => 'Score is aangepast',
+            ],
+          ]);
+
+          $this->view('layouts/messages/base');
 
           header('refresh: 1; url=' . $_ENV['URL_ROOT'] . '/persons/persons');
         } catch (\Exception $e) {
-          echo "<span>Er is iets fout gegaan</span>";
+          $this->setData([
+            'title' => 'Resultaten',
+            'msg' => [
+              'title' => 'Fout',
+              'body' => $e->getMessage(),
+            ],
+          ]);
+
+          $this->view('layouts/messages/base');
+
+          header('refresh: 1; url=' . $_ENV['URL_ROOT'] . '/persons/persons');
         }
 
         break;
