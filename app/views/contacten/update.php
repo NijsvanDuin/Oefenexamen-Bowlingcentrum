@@ -32,7 +32,7 @@ echo $data["title"];
             <tr>
                 <td>
                     <label for="email">E-Mail: </label>
-                    <input type="text" name="email" id="email" value="<?= $data["row"]->email; ?>">
+                    <input type="email" name="email" id="email" value="<?= $data["row"]->email; ?>" require>
                 </td>
             </tr>
             <tr>
