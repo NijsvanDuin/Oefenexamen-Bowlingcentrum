@@ -8,25 +8,25 @@ echo $data["title"];
             <tr>
                 <td>
                     <label for="first_name">Voornaam: </label>
-                    <input type="text" name="first_name" id="first_name" value="<?= $data["row"]->first_name; ?>">
+                    <span><?= $data["row"]->first_name; ?></span>
                 </td>
             </tr>
             <tr>
                 <td>
                     <label for="infix">Tussenvoegsel: </label>
-                    <input type="text" name="infix" id="infix" value="<?= $data["row"]->infix; ?>">
+                    <span><?= $data["row"]->infix; ?></span>
                 </td>
             </tr>
             <tr>
                 <td>
                     <label for="last_name">Achternaam: </label>
-                    <input type="text" name="last_name" id="last_name" value="<?= $data["row"]->last_name; ?>">
+                    <span><?= $data["row"]->last_name; ?></span>
                 </td>
             </tr>
             <tr>
                 <td>
                     <label for="phone">Mobiel: </label>
-                    <input type="text" name="phone" id="phone" value="<?= $data["row"]->phone; ?>">
+                    <span><?= $data["row"]->phone; ?></span>
                 </td>
             </tr>
             <tr>
@@ -38,13 +38,11 @@ echo $data["title"];
             <tr>
                 <td>
                     <label for="isVolwassen">Volwassen: </label>
-                    <?php
-                    if ($data["row"]->isVolwassen == 1) {
-                        echo '<input type="checkbox" name="isVolwassen" id="isVolwassen" value="1" checked>';
-                    } else {
-                        echo '<input type="checkbox" name="isVolwassen" id="isVolwassen" value="1">';
-                    }
-                    ?>
+                    <?php if ($data["row"]->isVolwassen == 1) : ?>
+                        <input type="checkbox" name="isVolwassen" id="isVolwassen" value="1" disabled checked>
+                    <?php else : ?>
+                        <input type="checkbox" name="isVolwassen" id="isVolwassen" value="1" disabled>
+                    <?php endif; ?>
                 </td>
             </tr>
             <input type="hidden" name="id" value="<?= $data["row"]->contact_id; ?>">
