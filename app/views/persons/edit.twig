@@ -6,13 +6,10 @@ insertion last_name score_created_at value #}
 		<h1>Bewerk score</h1>
 	</section>
 	<section>
-		<form
-			action="{{ globals.urlRoot }}/persons/edit/{{ score.id }}"
-			method="post"
-		>
+		<form action="{{ globals.urlRoot }}/persons/edit/{{ score.id }}" method="post">
 			<label>
 				Score
-				<input type="text" name="value" value="{{ score.value }}" />
+				<input type="number" name="value" value="{{ score.value }}" max="300" required />
 			</label>
 			<input type="submit" value="Bewerk" />
 		</form>

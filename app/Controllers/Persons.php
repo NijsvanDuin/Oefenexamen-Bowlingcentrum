@@ -42,6 +42,18 @@ class Persons extends BaseController
     switch ($_SERVER['REQUEST_METHOD']) {
       case 'POST':
         try {
+          if (!isset($_POST['value'])) {
+            throw new \Exception('Geen score ingevuld');
+          }
+
+          if (!is_numeric($_POST['value'])) {
+            throw new \Exception('Score moet een getal zijn');
+          }
+
+          if ($_POST['value'] < 0 || $_POST['value'] > 300) {
+            throw new \Exception('Score moet tussen de 0 en 300 liggen');
+          }
+
           $this->personScore->updateScore($id, $_POST['value']);
 
           $this->setData([
