@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Libraries\Controller;
+use App\Libraries\BaseController;
 
-class Result extends Controller
+class Result extends BaseController
 {
   private $personScore;
 

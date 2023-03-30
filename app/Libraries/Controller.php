@@ -5,7 +5,7 @@ namespace App\Libraries;
 use Twig\Environment;
 use App\Libraries\Core;
 
-class Controller
+class BaseController
 {
   protected Environment $twig;
   protected array $data = [];

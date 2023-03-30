@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Libraries\Controller;
+use App\Libraries\BaseController;
 
-class Persons extends Controller
+class Persons extends BaseController
 {
   private $personScore;
   private $person;
@@ -41,11 +41,15 @@ class Persons extends Controller
   {
     switch ($_SERVER['REQUEST_METHOD']) {
       case 'POST':
-        $this->personScore->updateScore($id, $_POST['value']);
+        try {
+          $this->personScore->updateScore($id, $_POST['value']);
 
-        echo "<span>Score is aangepast</span>";
+          echo "<span>Score is aangepast</span>";
 
-        header('refresh: 1; url=' . $_ENV['URL_ROOT'] . '/persons/persons');
+          header('refresh: 1; url=' . $_ENV['URL_ROOT'] . '/persons/persons');
+        } catch (\Exception $e) {
+          echo "<span>Er is iets fout gegaan</span>";
+        }
 
         break;
       case 'GET':

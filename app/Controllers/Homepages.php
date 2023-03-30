@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Libraries\Controller;
+use App\Libraries\BaseController;
 
-class Homepages extends Controller
+class Homepages extends BaseController
 {
   public function index()
   {
