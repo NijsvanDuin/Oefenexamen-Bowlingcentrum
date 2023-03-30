@@ -11,31 +11,42 @@ class Reservation extends Controller
 
     public function index()
     {
-        $reserveringen = $this->reservationModel->getReservation();
-
-        $getDate = $this->reservationModel->getDate();
-
-        if (Date("Date") > "28-12-2022") {
-            $rows = "<tr><td colspan='6'> Er is geen informatie over deze periode</td></tr>";
-            header('Refresh:3; url=' . URLROOT . '/reservation/index');
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            try {
+                $date = $_POST["Date"];
+                $Reservation = $this->reservationModel->getDate($date);
+                if (empty($Reservation)) {
+                    $mes = "<hr><h3>Er zijn geen reservaties na deze datum</h3>";
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
         } else {
+            try {
+                $Reservation = $this->reservationModel->getReservation();
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
         }
+
         $rows = '';
-        foreach ($reserveringen as $value) {
+        foreach ($Reservation as $value) {
             $rows .= "<tr>
-                        <td>$value->first_name</td>
-                        <td>$value->date_reservation</td>
-                        <td>$value->PlayTime</td>
-                        <td>$value->start_time</td>
-                        <td>$value->end_time</td>
-                        <td>$value->adults</td>
-                        <td>$value->children</td>
-                    </tr>";
+                                <td>$value->first_name</td>
+                                <td>$value->date_reservation</td>
+                                <td>$value->PlayTime</td>
+                                <td>$value->start_time</td>
+                                <td>$value->end_time</td>
+                                <td>$value->adults</td>
+                                <td>$value->children</td>
+                            </tr>";
         }
 
         $data = [
             'title' => 'Reserveringen',
             'reservationCustomer' => 'John',
+            'Reservation' => $Reservation,
+            'mes' => $mes ?? '',
             'rows' => $rows
         ];
         $this->view('/reservation/index', $data);

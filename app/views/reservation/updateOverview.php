@@ -1,22 +1,21 @@
-<?php
-require APPROOT  . '/views/includes/head.php';
-?>
-<h3><u><?= $data['title']; ?></u></h3><br>
-<br>
+<?php require APPROOT  . '/views/includes/head.php'; ?>
 
-<table border=1>
-    <thead>
-        <th>Naam</th>
-        <th>Datum</th>
-        <th>Aantal uren</th>
-        <th>Begintijd</th>
-        <th>Eindtijd</th>
-        <th>Aantal volwassenen</th>
-        <th>Aantal kinderen</th>
-    </thead>
-    <tbody>
-        <?= $data['rows']; ?>
-    </tbody>
-</table>
-<a href="<?= URLROOT; ?>/homepages/index">home</a>
-<?php require APPROOT  . '/views/includes/footer.php'; ?>
+<div class="title">
+    <h1><u><?= $data['title']; ?></u></h1>
+</div>
+<form action="<?= URLROOT; ?>/reservations/update/ <?= $data['id'] ?>" method="post">
+    <div>
+        <label for="code">Baannummer:</label>
+        <select name="track_id" id="track_id">
+            <option value="<?= $data['code']; ?>">Huidige baan: <?= $data['code']; ?></option>
+            <option value="1">Baan 1</option>
+            <option value="2">Baan 2</option>
+            <option value="3">Baan 3</option>
+        </select>
+        <input type="hidden" name="id" value="<?= $data['id']; ?>">
+
+
+        <input type="submit" value="Wijzigen">
+
+    </div>
+</form>

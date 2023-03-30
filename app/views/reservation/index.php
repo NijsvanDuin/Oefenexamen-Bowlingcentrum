@@ -2,12 +2,15 @@
 require APPROOT  . '/views/includes/head.php';
 ?>
 <h3><u><?= $data['title']; ?></u></h3><br>
-<h5>
-    <form action="controllers/Reservation"></form>
-    Reservering van: <?= $data['reservationCustomer']; ?>
-    <input type="date" id="Date" name="Date">
-    <input type="submit" name=viewDate value="Toon Reserveringen">
-</h5>
+<form action="<?= URLROOT; ?>/Reservation/index" method="post">
+    <h5>
+        <form action="controllers/Reservation"></form>
+        Reservering van: <?= $data['reservationCustomer']; ?>
+        <input type="date" id="Date" name="Date">
+        <input type="submit" value="Toon Reserveringen">
+    </h5>
+</form>
+
 <br>
 
 <table border=1>
@@ -24,5 +27,8 @@ require APPROOT  . '/views/includes/head.php';
         <?= $data['rows']; ?>
     </tbody>
 </table>
+
+<?= $data['mes']; ?>
+
 <a href="<?= URLROOT; ?>/homepages/index">home</a>
 <?php require APPROOT  . '/views/includes/footer.php'; ?>
