@@ -7,5 +7,6 @@
 <a href="<?= URLROOT; ?>/instructeur/index">Instructeurs in dienst</a> |
 <a href="<?= URLROOT; ?>/bestellen/index">Bowling centrum Bestellen</a> |
 <a href="<?= URLROOT; ?>/contacten/index">Bowling centrum Overzicht Klanten</a> |
+<a href="<?= URLROOT; ?>/reserveren/index">Bowling centrum Reserveren</a> |
 
 <?php require APPROOT . '/views/includes/footer.php'; ?>
